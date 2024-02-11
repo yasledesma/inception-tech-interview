@@ -1,27 +1,61 @@
-<template>
-  <v-container>
-    <v-row>
-        <v-card>
-            <v-card-title>
-                Data Table
-            </v-card-title>
-            <v-card-subtitle><p>Uh oh. There is nothing there. Using the data at <a href="https://random-data-api.com/">https://random-data-api.com/</a>, populate the table
-      below with headers and make it searchable. Also, expand the table to full width of the container. Let Bob know when complete.</p></v-card-subtitle>
-    <v-data-table>
+<script>
+export default {
+    name: "DataTable",
+    
+    props: {
+      headers: {
+          type: Array,
+          required: true
+      },
+      payload: {
+          type: Array,
+          required: true
+      },
+    },
+    data() {
+        return {
+            search: '',
+        }
+    },
+};
+</script>
 
-    </v-data-table>
-    </v-card>
-    </v-row>
+<template>
+  <v-container
+    fluid
+    ma-2
+    mb-4
+  >
     <v-row>
-      
+      <v-card width="99vw">
+        <v-card-title>
+          Cat app users
+        </v-card-title>
+        <v-card-subtitle>
+          <p>
+            All these people have cats! Grab their emails and say hi! 
+          </p>
+        </v-card-subtitle>
+        <v-data-table
+          dense
+          loading="!headers || !payload"
+          loading-text="Loading..."
+          :headers="headers"
+          :items="payload"
+          class="elevation-1"
+          :items-per-page="20"
+          :search="search"
+        >
+          <template v-slot:top>
+            <v-text-field
+              v-model="search"
+              label="Search"
+              class="mx-4"
+            />
+          </template>
+        </v-data-table>
+      </v-card>
     </v-row>
   </v-container>
 </template>
 
-<script>
-export default {
-
-  data: () => ({
-  }),
-};
-</script>
