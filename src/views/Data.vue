@@ -1,4 +1,3 @@
-
 <script>
 import DataTable from "../components/DataTable.vue";
 
@@ -62,3 +61,4 @@ export default {
     d-xs
   />
 </template>
+
