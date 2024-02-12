@@ -30,7 +30,6 @@ export default {
 
 <template>
   <DataTable
-    d-xs
     :headers="headers"
     :users="users"
     :loading="loading"
