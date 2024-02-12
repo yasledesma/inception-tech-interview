@@ -3,9 +3,74 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const UPDATE_HEADERS = 'UPDATE_HEADERS';
+const UPDATE_USERS= 'UPDATE_USERS';
+const UPDATE_ERROR= 'UPDATE_ERROR';
+
+const remove = {
+    password: 1,
+    uid: 1, 
+    avatar: 1,
+    gender: 1,
+    phone_number: 1,
+    employment: 1,
+    address: 1,
+    social_insurance_number: 1,
+    date_of_birth: 1,
+    credit_card: 1,
+    subscription: 1
+};
+
+function formatHeaders(val) {
+    return Object.keys(val[0]).filter(item => !remove[item])
+                              .map(key => {
+                                return {
+                                  text: formatHeader(key),
+                                  value: key
+                                };
+                              });
+};
+
+function formatHeader(val) {
+    return val[0].toUpperCase() + val.substring(1).replace('_', ' ');
+};
+
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+      headers: [],
+      users: [],
+      message: "Loading...",
+      loading: true
+  },
+  // TODO: implement cache with IndexedDB
+  mutations: {
+      [UPDATE_HEADERS](state, payload) {
+          state.loading = false;
+          state.headers = payload;
+      },
+      [UPDATE_USERS](state, payload) {
+          state.users = payload;
+      },
+      [UPDATE_ERROR](state, error) {
+          console.error(error);
+          state.loading = false;
+          state.message = "An error has ocurred while trying to fetch the data.";
+      }
+      
+  },
+  actions: {
+      async fetchUsers(context) {
+        try {
+          const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_RESOURCE}?size=100`);
+          const data = await res.json();
+          
+          context.commit('UPDATE_HEADERS', formatHeaders(data));
+          context.commit('UPDATE_USERS', data);
+        } catch(e) {
+            context.commit('UPDATE_ERROR', e);
+        } 
+      },
+  },
   modules: {},
 });
+

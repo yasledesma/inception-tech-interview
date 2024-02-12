@@ -1,22 +1,30 @@
 <script>
 export default {
-    name: "DataTable",
-    
-    props: {
-      headers: {
-          type: Array,
-          required: true
-      },
-      payload: {
-          type: Array,
-          required: true
-      },
+  name: "DataTable",
+  
+  props: {
+    headers: {
+        type: Array,
+        required: true
     },
-    data() {
-        return {
-            search: '',
-        }
+    users: {
+        type: Array,
+        required: true
     },
+    loading: {
+        type: Boolean,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+  },
+  data() {
+      return {
+          search: '',
+      }
+  },
 };
 </script>
 
@@ -38,10 +46,10 @@ export default {
         </v-card-subtitle>
         <v-data-table
           dense
-          loading="!headers || !payload"
-          loading-text="Loading..."
+          :loading="loading"
+          :loading-text="message"
           :headers="headers"
-          :items="payload"
+          :items="users"
           class="elevation-1"
           :items-per-page="20"
           :search="search"
@@ -58,4 +66,4 @@ export default {
     </v-row>
   </v-container>
 </template>
-
+users
