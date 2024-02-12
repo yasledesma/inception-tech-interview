@@ -1,5 +1,6 @@
 <script>
 export default {
+    name: "Navbar",
     data() {
         const opts = [
             {name: "Home", path: "/"},
@@ -35,11 +36,12 @@ export default {
     >
       <v-icon
         x-large
-        class="mx-6"
+        class="mr-3"
       >
         mdi-cat
       </v-icon>
       
+      <!-- TODO: maybe move this into a hamburger menu for mobile? -->
       <v-list-item-group
         v-model="model"
         group="main"
@@ -60,3 +62,4 @@ export default {
     </v-list>
   </v-app-bar>
 </template>
+
