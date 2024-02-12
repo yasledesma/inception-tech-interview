@@ -1,30 +1,3 @@
-<template>
-  <v-container>
-    <v-row>
-      <v-col cols="6">
-        <h2>Welcome to the Tech Interview</h2>
-        Youre doing great so far. Keep it up.
-        <v-img
-          alt="Cat with hat"
-          class="shrink mr-2"
-          contain
-          src="../assets/catmeme.jpg"
-          transition="scale-transition"
-          width="100%"
-        />
-      </v-col>
-      <v-col cols="6">
-    <v-row>
-    Something seems to be wrong. There should be a nav up there ^^^
-    </v-row>
-    <v-row>
-      Add a nav to the view /data.
-    </v-row>
-    </v-col>
-    </v-row>
-  </v-container>
-</template>
-
 <script>
 export default {
   name: "HelloWorld",
@@ -32,38 +5,34 @@ export default {
   data: () => ({
     ecosystem: [
       {
-        text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader",
+        text: "Vue",
+        href: "https://v2.vuejs.org",
       },
       {
-        text: "github",
-        href: "https://github.com/vuetifyjs/vuetify",
+        text: "Vuetify",
+        href: "https://v2.vuetifyjs.com",
       },
       {
-        text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify",
+        text: "Vuex",
+        href: "https://v3.vuex.vuejs.org",
+      },
+      {
+        text: "Vue Router",
+        href: "https://v3.router.vuejs.org",
       },
     ],
     importantLinks: [
       {
-        text: "Documentation",
-        href: "https://vuetifyjs.com",
+        text: "vuetify-loader",
+        href: "https://github.com/vuetifyjs/vuetify-loader",
       },
       {
-        text: "Chat",
-        href: "https://community.vuetifyjs.com",
+        text: "IndexedDB docs",
+        href: "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
       },
       {
-        text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify",
-      },
-      {
-        text: "Twitter",
-        href: "https://twitter.com/vuetifyjs",
-      },
-      {
-        text: "Articles",
-        href: "https://medium.com/vuetify",
+        text: "Service Workers docs",
+        href: "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
       },
     ],
     whatsNext: [
@@ -76,10 +45,87 @@ export default {
         href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
       },
       {
-        text: "Frequently Asked Questions",
-        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions",
+        text: "awesome-vuetify",
+        href: "https://github.com/vuetifyjs/awesome-vuetify",
       },
     ],
   }),
 };
 </script>
+
+<template>
+  <v-container>
+    <v-row>
+      <v-col
+        xs="12"
+        lg="6"
+      >
+        <h2>Welcome to the Tech Interview</h2>
+        Youre doing great so far. Keep it up.
+        <v-img
+          alt="Cat with hat"
+          class="shrink mr-2"
+          contain
+          src="../assets/catmeme.jpg"
+          transition="scale-transition"
+          width="100%"
+        />
+      </v-col>
+      <v-col
+        xs="12"
+        lg="6"
+      >
+        <h2>Resources</h2>
+        <v-container>
+          <h3>Ecosystem</h3>
+          <v-container
+            v-for="item in ecosystem"
+            :key="item.text"
+          >
+            <v-row>
+              <a
+                :href="item.href"
+                target="_blank"
+              >
+                {{ item.text }}
+              </a>
+            </v-row>
+          </v-container>
+        </v-container>
+        <v-container>
+          <h3>Important links</h3>
+          <v-container
+            v-for="item in importantLinks"
+            :key="item.text"
+          >
+            <v-row>
+              <a
+                :href="item.href"
+                target="_blank"
+              >
+                {{ item.text }}
+              </a>
+            </v-row>
+          </v-container>
+        </v-container>
+        <v-container>
+          <h3>What's next</h3>
+          <v-container
+            v-for="item in whatsNext"
+            :key="item.text"
+          >
+            <v-row>
+              <a
+                :href="item.href"
+                target="_blank"
+              >
+                {{ item.text }}
+              </a>
+            </v-row>
+          </v-container>
+        </v-container>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
