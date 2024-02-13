@@ -3,9 +3,9 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const UPDATE_HEADERS = 'UPDATE_HEADERS';
-const UPDATE_USERS= 'UPDATE_USERS';
-const UPDATE_ERROR= 'UPDATE_ERROR';
+export const UPDATE_HEADERS = 'UPDATE_HEADERS';
+export const UPDATE_USERS= 'UPDATE_USERS';
+export const UPDATE_ERROR= 'UPDATE_ERROR';
 
 const remove = {
     password: 1,
@@ -36,13 +36,14 @@ function formatHeader(val) {
 };
 
 export default new Vuex.Store({
+  name: "store",
+    
   state: {
       headers: [],
       users: [],
       message: "Loading...",
       loading: true
   },
-  // TODO: implement cache with IndexedDB
   mutations: {
       [UPDATE_HEADERS](state, payload) {
           state.loading = false;
