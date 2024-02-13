@@ -7,6 +7,7 @@ export const UPDATE_HEADERS = 'UPDATE_HEADERS';
 export const UPDATE_USERS = 'UPDATE_USERS';
 export const UPDATE_ERROR = 'UPDATE_ERROR';
 export const errorMessage = "An error has ocurred while trying to fetch the data.";
+export const successMessage = "Success!";
 
 const remove = {
     password: 1,
@@ -48,6 +49,7 @@ export const store = {
   mutations: {
       [UPDATE_HEADERS](state, payload) {
           state.loading = false;
+          state.message = successMessage;
           state.headers = payload;
       },
       [UPDATE_USERS](state, payload) {
