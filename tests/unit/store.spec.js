@@ -59,3 +59,33 @@ describe('Mutations', () => {
   });
 });
 
+describe('Actions', () => {
+  let mockStore;
+
+  beforeEach(() => {
+    const localVue = createLocalVue()
+    localVue.use(Vuex)
+    mockStore = new Vuex.Store(cloneDeep(store))
+  });
+
+  it('fetchUsers success', async () => {
+    await mockStore.dispatch('fetchUsers');
+    expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining(`${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_RESOURCE}?size=100`));
+
+    expect(mockStore.state.loading).toBe(false);
+    expect(mockStore.state.message).toEqual(successMessage);
+    expect(mockStore.state.headers).toEqual(formatHeaders(users));
+    expect(mockStore.state.users).toEqual(users);
+  });
+
+  it('fetchUsers failure', async () => {
+    global.fetch.mockImplementationOnce(() => Promise.reject(new Error('Network error')));
+    await mockStore.dispatch('fetchUsers');
+      
+    expect(global.fetch).toHaveBeenCalled();
+
+    expect(mockStore.state.loading).toBe(false);
+    expect(mockStore.state.message).toEqual(errorMessage);
+  });
+});
+
