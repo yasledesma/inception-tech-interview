@@ -4,8 +4,9 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export const UPDATE_HEADERS = 'UPDATE_HEADERS';
-export const UPDATE_USERS= 'UPDATE_USERS';
-export const UPDATE_ERROR= 'UPDATE_ERROR';
+export const UPDATE_USERS = 'UPDATE_USERS';
+export const UPDATE_ERROR = 'UPDATE_ERROR';
+export const errorMessage = "An error has ocurred while trying to fetch the data.";
 
 const remove = {
     password: 1,
@@ -35,7 +36,7 @@ function formatHeader(val) {
     return val[0].toUpperCase() + val.substring(1).replace('_', ' ');
 };
 
-export default new Vuex.Store({
+export const store = {
   name: "store",
     
   state: {
@@ -55,7 +56,7 @@ export default new Vuex.Store({
       [UPDATE_ERROR](state, error) {
           console.error(error);
           state.loading = false;
-          state.message = "An error has ocurred while trying to fetch the data.";
+          state.message = errorMessage;
       }
       
   },
@@ -64,7 +65,7 @@ export default new Vuex.Store({
         try {
           const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_RESOURCE}?size=100`);
           const data = await res.json();
-          
+
           context.commit('UPDATE_HEADERS', formatHeaders(data));
           context.commit('UPDATE_USERS', data);
         } catch(e) {
@@ -73,5 +74,7 @@ export default new Vuex.Store({
       },
   },
   modules: {},
-});
+}
+
+export default new Vuex.Store(store);
 

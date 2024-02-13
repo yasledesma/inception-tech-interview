@@ -27,12 +27,8 @@ export default {
         href: "https://github.com/vuetifyjs/vuetify-loader",
       },
       {
-        text: "IndexedDB docs",
-        href: "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
-      },
-      {
-        text: "Service Workers docs",
-        href: "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+        text: "Testing Vuex",
+        href: "https://v3.vuex.vuejs.org/guide/testing.html",
       },
     ],
     whatsNext: [
