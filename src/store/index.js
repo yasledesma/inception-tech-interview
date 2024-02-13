@@ -23,7 +23,7 @@ const remove = {
     subscription: 1
 };
 
-function formatHeaders(val) {
+export function formatHeaders(val) {
     return Object.keys(val[0]).filter(item => !remove[item])
                               .map(key => {
                                 return {
