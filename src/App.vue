@@ -20,5 +20,8 @@ export default {
     Navbar,
     Footer
   },
+  mounted() {
+    document.title = "Inception Tech Interview";
+  }
 };
 </script>
