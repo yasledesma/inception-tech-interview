@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import PageNotFound from "../views/PageNotFound";
 
 
 Vue.use(VueRouter);
@@ -27,6 +28,17 @@ const routes = [
     name: "Data",
     component: () =>
       import(/* webpackChunkName: "data" */ "../views/Data.vue"),
+  },
+    
+  {
+    path: "/404",
+    name: "PageNotFound",
+    component: PageNotFound
+  },
+
+  {
+    path: "*",
+    redirect: "/404"
   }
 ];
 
