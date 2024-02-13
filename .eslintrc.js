@@ -1,28 +1,24 @@
 // Source: https://eslint.vuejs.org/user-guide/
 module.exports = {
-    "env": {
-        "browser": "true",
-        "node": "true"
+    env: {
+        browser: "true",
+        node: "true"
     },
-
-    "extends": [
+    extends: [
         "eslint:recommended",
         "plugin:vue/recommended",
         "prettier"
     ],
-
-    "rules": {
+    rules: {
         "vue/no-unused-vars": "error",
         "vue/v-on-style": "off"
     },
-
-    "parser": "vue-eslint-parser",
-
-    "parserOptions": {
-        "ecmaVersion": 8,
-        "sourceType": "module"
+    parser: "vue-eslint-parser",
+    parserOptions: {
+        parser: 'babel-eslint',
+        ecmaVersion: 8,
+        sourceType: "module"
     },
-
     overrides: [
       {
         files: [
@@ -35,3 +31,4 @@ module.exports = {
       }
     ]
 }
+
